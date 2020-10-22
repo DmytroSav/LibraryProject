@@ -7,20 +7,26 @@
     >
       <span>{{ book }}</span>
     </div>
-    <form v-else class="flex-grow-1" @submit.prevent="finishEditing()">
+    <form v-else class="flex-grow-1" @submit.prevent="finishEditing">
       <input
           type="text"
           class="form-control"
           v-model="newBookName"
-          @blur="finishEditing()"
+          @blur="finishEditing"
           ref="editBook"
       />
     </form>
     <button
-        @click="startEditing()"
-        class="btn btn-outline-primary border-0 ml-2"
-    >
+        v-if="!isEditing"
+        @click="startEditing"
+        class="btn btn-outline-primary border-0 ml-2">
       <span class="fa fa-edit"></span>
+    </button>
+    <button
+        v-if="isEditing"
+        @click="finishEditing"
+        class="btn btn-outline-success border-0 ml-2">
+      <span class="fa fa-check"></span>
     </button>
     <button @click="$emit('on-delete')" class="btn btn-outline-danger border-0">
       <span class="fa fa-trash"></span>
@@ -42,7 +48,7 @@ export default {
   methods: {
     startEditing() {
       if (this.isEditing) {
-        this.finishEditing();
+        return this.finishEditing();
       } else {
         this.newBookName = this.book;
         this.isEditing = true;

@@ -23,7 +23,7 @@
           <library-item
               v-for="(book, index) in books"
               :key="index"
-              :book="book"
+              :book="book.description"
               @on-delete="deleteBook(index)"
               @on-edit="editBook(index, $event)"
           />
@@ -34,19 +34,22 @@
 </template>
 
 <script>
-import LibraryItem from "@/components/ElementComponent.vue";
+import LibraryItem from "@/components/BookElementComponent.vue";
 
 export default {
   data() {
     return {
       newBook: '',
-      books: ['Stephen King, Under the Dome', 'Friedrich Nietzsche, Also sprach Zarathustra'],
+      books: [
+        {description: 'Stephen King, Under the Dome'},
+        {description: 'Friedrich Nietzsche, Also sprach Zarathustra'}
+        ],
     };
   },
   components: { 'library-item': LibraryItem },
   methods: {
     addBook() {
-      this.books.push(this.newBook);
+      this.books.push({description: this.newBook});
       this.newBook = '';
       this.$nextTick(() => this.$refs.newBook.focus());
     },
@@ -54,7 +57,7 @@ export default {
       this.books.splice(index, 1);
     },
     editBook(index, newBookName) {
-     this.books[index] = newBookName;
+     this.books[index].description = newBookName;
     },
   },
 };
