@@ -49,6 +49,13 @@ export default {
   components: { 'library-item': LibraryItem },
   methods: {
     addBook() {
+      if(this.newBook==='') return alert('EMPTY!!');
+      // let formData = new FormData();
+      // let data = formData.append('data', this.newBook);
+      //
+      // axios.post('./library.php', data)
+      // .then(res => console.log('res', res));
+
       this.books.push({description: this.newBook});
       this.newBook = '';
       this.$nextTick(() => this.$refs.newBook.focus());
