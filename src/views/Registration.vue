@@ -77,8 +77,9 @@ export default {
   data() {
     return {
       form: {},
-      invalidName: false,
+      proceed: false,
       registration: false,
+      invalidName: false,
       invalidEmail: false,
       invalidPassword: false,
       passwordMismatch: false,
@@ -110,7 +111,15 @@ export default {
     },
 
     submitRegistrationForm(){
-      // this.validateRegistration();
+      this.validateRegistration();
+
+      this.proceed =  !this.invalidName &&
+          !this.invalidEmail &&
+          !this.invalidPassword &&
+          !this.passwordMismatch &&
+          !this.invalidPasswordConf
+      if(!this.proceed) return;
+
       let data = {
         name: this.form.name,
         email: this.form.email,
@@ -120,11 +129,14 @@ export default {
       .then(res => {
         localStorage.setItem('user_token', res.data)
         this.$router.push(({ name: "Library"}));
-      });
+      }).catch(err=>console.log(err))
     },
 
     submitLoginForm(){
       this.validateLogin();
+
+      this.proceed = !this.invalidEmail && !this.invalidPassword;
+      if(!this.proceed) return;
 
       let data = {
         email: this.form.email,

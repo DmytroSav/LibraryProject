@@ -79,8 +79,6 @@ export default {
           this.getBooksByUserId();
         });
       }
-      else this.$router.push(({ name: "Registration"}));
-
 
     },
 

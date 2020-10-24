@@ -18,13 +18,14 @@ php -S 127.0.0.1:8000 -t public
 [make sure it runs on different port than npm (8080 etc)]
 
 5. copy .env.example in root directory (for frontend) and .env.example api/src (for backend),
-rename them to .env
+rename them from .env.example to .env
 
-6.insert your API_URL to .env in root (e.g. VUE_APP_API_URL = http://127.0.0.1:8000/)
+6.insert your API_URL to .env in root (e.g. VUE_APP_API_URL = http://127.0.0.1:8000/). 
+Make sure you did not ferget the slash in the end (!)
 
 7. Insert database info to .env file in api/src
 
 8. run $php library_db_seeder.php from api/src
 
-9. and that's it! hope you managed the environment successfully, feel free to test the App
+9. and ... that's it! hope you managed the environment successfully, feel free to test the Library
 
