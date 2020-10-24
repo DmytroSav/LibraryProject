@@ -1,16 +1,17 @@
 <template>
   <div class="container">
     <div class="row">
-      <div class="col-12 py-5">
+      <div class="col-12 py-3">
         <h1>Library</h1>
+        <h4>Here you can add books to your list. <br/>
+          Go ahead and type, add, edit or delete a book from your list</h4>
       </div>
     </div>
     <div class="row mb-3">
       <form class="col-12 col-sm-10 col-md-8 cl-lg-6 mx-auto" @submit="addBook">
-        <input
+        <textarea
             @input="emptySubmit = false"
             v-model="newBook"
-            type="text"
             class="form-control"
             :class="{'is-invalid' : emptySubmit}"
             placeholder="Add new book here"
@@ -23,6 +24,9 @@
       </form>
     </div>
     <div class="row">
+        <div class="col-12 py-5">
+          <h3>Added books:</h3>
+        </div>
       <div class="col-12 col-sm-10 col-lg-10 mx-auto">
         <ul class="list-group">
           <li class="d-flex align-items-center list-group-item" v-if="books.length == 0">
