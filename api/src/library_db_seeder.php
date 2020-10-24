@@ -5,7 +5,7 @@ $statement = <<<EOS
     CREATE TABLE IF NOT EXISTS library (
 id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 user_id INT NOT NULL,
-content varchar(255)
+content TEXT NOT NULL
 );
 
     INSERT INTO library (user_id, content) values

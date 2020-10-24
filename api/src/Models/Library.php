@@ -70,13 +70,30 @@ class Library {
             exit($e->getMessage());
         }
     }
+    public function getLastRecordID()
+    {
+        $statement = "
+           SELECT id
+           FROM library
+            ORDER BY  id 
+            DESC LIMIT 1;
+        ";
+
+        try {
+            $statement = $this->db->query($statement);
+            $result = $statement->fetchAll(\PDO::FETCH_ASSOC);
+            return $result;
+        } catch (\PDOException $e) {
+            exit($e->getMessage());
+        }
+    }
 
     public function update(Array $input)
     {
         $statement = "
             UPDATE library
             SET 
-                book_name = :book_name
+                content = :content
             WHERE 
                 id = :book_id;
         ";

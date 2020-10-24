@@ -64,8 +64,10 @@ class LibraryController {
             return $this->validationFailed();
         }
         $this->library->add($request);
+        $last_record_id = $this->library->getLastRecordID();
+
         $response['status_code_header'] = 'HTTP/1.1 201 Created';
-        $response['body'] = null;
+        $response['body'] = json_encode($last_record_id);
         return $response;
     }
 
@@ -81,7 +83,7 @@ class LibraryController {
         }
         $this->library->update($request);
         $response['status_code_header'] = 'HTTP/1.1 200 OK';
-        $response['body'] = null;
+        $response['body'] = 'success';
         return $response;
     }
 

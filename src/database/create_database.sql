@@ -1,7 +1,7 @@
 
 -- CREATE A 'library_app' DATABASE:
 
-CREATE DATABASE library_app;
+CREATE DATABASE library_app DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- SWITCH TO CREATED DATABASE:
 
