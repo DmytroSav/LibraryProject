@@ -8,13 +8,13 @@ user_id INT NOT NULL,
 content TEXT NOT NULL
 );
 
-    INSERT INTO library (user_id, content) values
-(1, 'Kurt Vonnegut "Galapogoses"'),
-(1, 'Richard Dawkins "The Selfish gene"'),
-(2, 'Stephen King "Doctor Sleep"'),
-(2, 'Stephen King "It"'),
-(3, 'Jorge Luis Borges "The book of send"'),
-(3, 'Ayn Rand "Atlas shrugged"');
+    CREATE TABLE IF NOT EXISTS users (
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(255) NOT NULL,
+email VARCHAR(255) UNIQUE NOT NULL,
+password VARCHAR(255) NOT NULL,
+token VARCHAR(255)
+);
 EOS;
 
 try {

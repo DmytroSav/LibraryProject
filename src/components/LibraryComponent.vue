@@ -3,9 +3,10 @@
     <div class="row">
       <div class="col-12 py-3">
         <h1>Library</h1>
-        <h4>Here you can store some books.<br/>
+        <h4>Hi, {{ userName }}! Here you can store some books.<br/>
           Go ahead and type, add, edit or delete a book from your list</h4>
       </div>
+      <button class="btn btn-secondary fixed-top ml-10" @click="logout">Log out</button>
     </div>
     <div class="row mb-3">
       <form class="col-12 col-sm-10 col-md-8 cl-lg-6 mx-auto" @submit="addBook">
@@ -55,7 +56,8 @@ import LibraryItem from "@/components/BookElementComponent.vue";
 export default {
   data() {
     return {
-      userId: 3,
+      userId: '',
+      userName: '',
       newBook: '',
       emptySubmit: false,
       books: []
@@ -63,9 +65,25 @@ export default {
   },
   components: { 'library-item': LibraryItem },
   created(){
-    this.getBooksByUserId();
+    this.getUser();
   },
   methods: {
+    getUser(){
+      let token = localStorage.getItem('user_token');
+      if(token){
+        this.axios.post(process.env.VUE_APP_API_URL +  'user', {'token' : token})
+        .then(res => {
+          this.userId = res.data[0].id;
+          this.userName = res.data[0].name;
+
+          this.getBooksByUserId();
+        });
+      }
+      else this.$router.push(({ name: "Registration"}));
+
+
+    },
+
     getBooksByUserId(){
       this.axios.get(process.env.VUE_APP_API_URL + 'books/' + this.userId)
           .then((res) => {
@@ -75,6 +93,11 @@ export default {
               this.books = res.data;
           });
 
+    },
+
+    logout(){
+      localStorage.removeItem('user_token');
+      this.$router.push(({ name: "Registration"}));
     },
 
     addBook() {

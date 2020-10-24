@@ -70,6 +70,7 @@ class Library {
             exit($e->getMessage());
         }
     }
+
     public function getLastRecordID()
     {
         $statement = "
