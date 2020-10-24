@@ -1,7 +1,7 @@
 <template>
   <li class="d-flex align-items-center list-group-item">
     <div
-        class="btn border-0 flex-grow-1 text-left shadow-none"
+        class="border-0 flex-grow-1 text-left shadow-none"
         @click="$emit('on-toggle')"
         v-if="!isEditing"
     >

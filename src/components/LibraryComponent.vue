@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-12 py-3">
         <h1>Library</h1>
-        <h4>Here you can add books to your list. <br/>
+        <h4>Here you can store some books.<br/>
           Go ahead and type, add, edit or delete a book from your list</h4>
       </div>
     </div>
@@ -24,7 +24,7 @@
       </form>
     </div>
     <div class="row">
-        <div class="col-12 py-5">
+        <div class="col-12 py-3">
           <h3>Added books:</h3>
         </div>
       <div class="col-12 col-sm-10 col-lg-10 mx-auto">
