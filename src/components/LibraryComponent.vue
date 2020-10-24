@@ -8,17 +8,22 @@
     <div class="row mb-3">
       <form class="col-12 col-sm-10 col-md-8 cl-lg-6 mx-auto" @submit="addBook">
         <input
+            @input="emptySubmit = false"
             v-model="newBook"
             type="text"
             class="form-control"
+            :class="{'is-invalid' : emptySubmit}"
             placeholder="Add new book here"
             ref="newBook"
         />
+        <div class="invalid-feedback">
+          Please add book info before submit
+        </div>
         <button type="submit" class="btn btn-primary btn-block mt-3">Add new book</button>
       </form>
     </div>
     <div class="row">
-      <div class="col-12 col-sm-10 col-lg-6 mx-auto">
+      <div class="col-12 col-sm-10 col-lg-10 mx-auto">
         <ul class="list-group">
           <li class="d-flex align-items-center list-group-item" v-if="books.length == 0">
             <div
@@ -48,6 +53,7 @@ export default {
     return {
       userId: 3,
       newBook: '',
+      emptySubmit: false,
       books: []
     };
   },
@@ -68,7 +74,8 @@ export default {
     },
 
     addBook() {
-      if(this.newBook==='') return alert("Book info's empty. Please add some text before submit");
+      if(this.newBook==='')
+        return this.emptySubmit = true;
 
       let data = {
         'id': this.userId,
