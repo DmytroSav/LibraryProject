@@ -1,5 +1,16 @@
 # Library-project
 
+## Project desription
+
+It's an SPA with VueJS frontend + bootstrap library for styling + PHP for back-end (used dotenv library for storing variables and
+ psr-4 for namespacing).
+ For MVC, the following logic was implemented:
+  + View  represented by responsive VueJS components with  axios library for requests to back-end,
+  + Models for DB calls
+  + Controllers to interpret the HTTP requests from front-end and return / store an appropriate info
+  
+  You can set up this project locally by following the instructions below:
+ 
 ## Project setup
 ```
 
